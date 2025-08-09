@@ -2,6 +2,9 @@
 
 Vibnex is a Next.js app integrated with Supabase to provide URL shortening and AI insights.
 
+## Live Demo
+Check out the live deployed app here: [https://your-deployment-url.vercel.app](https://vibnex-539c.vercel.app/)
+
 ## Features
 
 - URL shortening with unique short codes
