@@ -112,10 +112,10 @@ export default function Page() {
                                 Open in New Tab
                             </button>
                         </div>
-                        <iframe
+                        {/* <iframe
                             src={shortUrl}
                             className="w-full h-64 rounded-lg border border-white/10"
-                        ></iframe>
+                        ></iframe> */}
                     </div>
                 )}
             </div>
