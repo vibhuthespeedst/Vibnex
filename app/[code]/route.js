@@ -1,13 +1,28 @@
-import { db } from "../lib/db";
+import { createClient } from "@supabase/supabase-js";
 
-export async function GET(req) {
-  const code = req.url.split("/").pop();
-  const result = db.prepare("SELECT long FROM links WHERE code = ?").get(code);
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
+
+export async function GET(req, context) {
+  const { params } = await context;
+  const code = params.code;
+
+  const { data, error } = await supabase
+    .from("links")
+    .select("original_url")
+    .eq("short_code", code)
+    .single();
+
+  if (error || !data) {
+    return new Response(null, { status: 404 });
+  }
 
   return new Response(null, {
     status: 302,
     headers: {
-      Location: result ? result.long : "/undefined"
-    }
+      Location: data.original_url,
+    },
   });
 }
